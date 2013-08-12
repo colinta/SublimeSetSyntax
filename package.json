@@ -6,7 +6,7 @@
   "labels": ["language syntax"],
   "releases": [
     {
-      "details": "https://github.com/colinta/SublimeSetSyntax/tree/master",
+      "details": "https://github.com/colinta/SublimeSetSyntax/tree/st2",
       "sublime_text": "<3000"
     },
     {
