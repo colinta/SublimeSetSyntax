@@ -2,5 +2,9 @@
     {
         "caption": "Set Syntax",
         "command": "set_syntax"
+    },
+    {
+        "caption": "Set Syntax Settings",
+        "command": "set_syntax_settings"
     }
 ]

@@ -1,4 +1,5 @@
 [
+    { "keys": ["super+ctrl+shift+s"], "command": "set_syntax_settings" },
     { "keys": ["ctrl+alt+shift+a"], "command": "set_syntax", "args": {"matches": "a"} },
     { "keys": ["ctrl+alt+shift+b"], "command": "set_syntax", "args": {"matches": "b"} },
     { "keys": ["ctrl+alt+shift+c"], "command": "set_syntax", "args": {"matches": "c"} },
