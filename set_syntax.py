@@ -19,6 +19,10 @@ class SetSyntaxSettingsCommand(sublime_plugin.TextCommand):
             ('{} Tab Width: 4'.format(tabs == 4 and '✓' or '  '), lambda: self.set_tab_size(4)),
             ('{} Tab Width: 8'.format(tabs == 6 and '✓' or '  '), lambda: self.set_tab_size(6)),
             ('———', lambda: None),
+            ('Reindent: 2', lambda: self.reindent_tab_size(2)),
+            ('Reindent: 4', lambda: self.reindent_tab_size(4)),
+            ('Reindent: 8', lambda: self.reindent_tab_size(6)),
+            ('———', lambda: None),
             ('Convert indentation to {}'.format(soft_tabs and 'Tab' or 'Spaces'), lambda: self.set_soft_tabs(not soft_tabs)),
             ('Reapply indentation to {}'.format(not soft_tabs and 'Tab' or 'Spaces'), lambda: self.set_soft_tabs(soft_tabs)),
         ]
@@ -39,10 +43,19 @@ class SetSyntaxSettingsCommand(sublime_plugin.TextCommand):
 
     def set_soft_tabs(self, new_setting):
         if new_setting:
-            self.view.run_command('expand_tabs')
+            self.view.run_command('expand_tabs', {'set_translate_tabs': True})
         else:
-            self.view.run_command('unexpand_tabs')
-        self.view.settings().set('translate_tabs_to_spaces', new_setting)
+            self.view.run_command('unexpand_tabs', {'set_translate_tabs': False})
 
     def set_tab_size(self, new_setting):
         self.view.settings().set('tab_size', new_setting)
+
+    def reindent_tab_size(self, new_setting):
+        if self.view.settings().get('translate_tabs_to_spaces'):
+            # self.view.settings().set('translate_tabs_to_spaces', False)
+            self.view.run_command('unexpand_tabs', {'set_translate_tabs': True})
+            self.view.settings().set('tab_size', new_setting)
+            self.view.run_command('expand_tabs', {'set_translate_tabs': True})
+            # self.view.settings().set('translate_tabs_to_spaces', True)
+        else:
+            self.view.settings().set('tab_size', new_setting)
