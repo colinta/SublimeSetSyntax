@@ -10,10 +10,22 @@ class SetSyntaxCommand(sublime_plugin.WindowCommand):
             self.window.run_command('show_overlay', {"overlay": "command_palette", "text": "Set Syntax: " + matches})
 
 
+class SetScratchSettingsCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        is_scratch = self.view.is_scratch()
+        self.view.set_scratch(not is_scratch)
+        if is_scratch:
+            sublime.status_message('View is now a text file')
+        else:
+            sublime.status_message('View is now a scratch pad')
+
+
 class SetSyntaxSettingsCommand(sublime_plugin.TextCommand):
-    def run(self, matches=None):
+    def run(self, edit):
         soft_tabs = self.view.settings().get('translate_tabs_to_spaces')
         tabs = self.view.settings().get('tab_size')
+        has_selection = len(self.view.sel()) == 1 and len(self.view.sel()[0]) and self.view.substr(self.view.sel()[0])
+
         settings = [
             ('{} Tab Width: 2'.format(tabs == 2 and '✓' or '  '), lambda: self.set_tab_size(2)),
             ('{} Tab Width: 4'.format(tabs == 4 and '✓' or '  '), lambda: self.set_tab_size(4)),
@@ -25,6 +37,7 @@ class SetSyntaxSettingsCommand(sublime_plugin.TextCommand):
             ('———', lambda: None),
             ('Convert indentation to {}'.format(soft_tabs and 'Tab' or 'Spaces'), lambda: self.set_soft_tabs(not soft_tabs)),
             ('Reapply indentation to {}'.format(not soft_tabs and 'Tab' or 'Spaces'), lambda: self.set_soft_tabs(soft_tabs)),
+            ('Set Title{}'.format(has_selection and ' to "{}"'.format(has_selection) or ''), lambda: self.set_title(has_selection)),
         ]
         prompts = [entry[0] for entry in settings]
         self.view.window().show_quick_panel(prompts, self.handler(settings))
@@ -49,6 +62,10 @@ class SetSyntaxSettingsCommand(sublime_plugin.TextCommand):
 
     def set_tab_size(self, new_setting):
         self.view.settings().set('tab_size', new_setting)
+
+    def set_title(self, title):
+        if title:
+            self.view.set_name(title)
 
     def reindent_tab_size(self, new_setting):
         if self.view.settings().get('translate_tabs_to_spaces'):

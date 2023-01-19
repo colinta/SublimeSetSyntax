@@ -6,5 +6,9 @@
     {
         "caption": "Set Syntax Settings",
         "command": "set_syntax_settings"
+    },
+    {
+        "caption": "Toggle Scratch Settings",
+        "command": "set_scratch_settings"
     }
 ]
