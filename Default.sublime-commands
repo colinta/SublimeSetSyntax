@@ -1,14 +1,18 @@
 [
     {
-        "caption": "Set Syntax",
-        "command": "set_syntax"
-    },
-    {
         "caption": "Set Syntax Settings",
         "command": "set_syntax_settings"
     },
     {
-        "caption": "Toggle Scratch Settings",
-        "command": "set_scratch_settings"
+        "caption": "Set Syntax",
+        "command": "set_syntax"
+    },
+    {
+        "caption": "Toggle Scratch Setting",
+        "command": "toggle_scratch_setting"
+    },
+    {
+        "caption": "Set Title",
+        "command": "set_title"
     }
 ]
