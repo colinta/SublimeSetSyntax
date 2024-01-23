@@ -8,10 +8,6 @@
         "command": "set_syntax"
     },
     {
-        "caption": "Toggle Scratch Setting",
-        "command": "toggle_scratch_setting"
-    },
-    {
         "caption": "Set Title",
         "command": "set_title"
     }

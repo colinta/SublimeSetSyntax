@@ -10,16 +10,6 @@ class SetSyntaxCommand(sublime_plugin.WindowCommand):
             self.window.run_command('show_overlay', {"overlay": "command_palette", "text": "Set Syntax: " + matches})
 
 
-class ToggleScratchSettingCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        is_scratch = self.view.is_scratch()
-        self.view.set_scratch(not is_scratch)
-        if is_scratch:
-            self.view.show_popup('View is now a<br/><strong>text file</strong>', flags=sublime.HIDE_ON_MOUSE_MOVE)
-        else:
-            self.view.show_popup('View is now a<br/><strong>scratch pad</strong>', flags=sublime.HIDE_ON_MOUSE_MOVE)
-
-
 class SetTitleCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         if len(self.view.sel()) == 1 and len(self.view.sel()[0]):
@@ -47,7 +37,6 @@ class SetSyntaxSettingsCommand(sublime_plugin.TextCommand):
             ('———', lambda: None),
             ('Convert indentation to {}'.format(soft_tabs and 'Tab' or 'Spaces'), lambda: self.set_soft_tabs(not soft_tabs)),
             ('Reapply indentation to {}'.format(not soft_tabs and 'Tab' or 'Spaces'), lambda: self.set_soft_tabs(soft_tabs)),
-            ('Set Scratch to {}'.format('Off' if is_scratch else 'On'), lambda: self.view.run_command('toggle_scratch_setting')),
             ('Set Title{}'.format(' to "{}"'.format(has_selection) if has_selection else ''), lambda: self.view.run_command('set_title')),
         ]
         prompts = [entry[0] for entry in settings]
