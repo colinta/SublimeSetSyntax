@@ -3,10 +3,12 @@
   "description": "Some generic keyboard bindings for 'Set Syntax:'",
   "author": "Colin T.A. Gray (colinta)",
   "details": "https://github.com/colinta/SublimeSetSyntax",
-  "labels": ["language syntax"],
+  "labels": [
+    "language syntax"
+  ],
   "releases": [
     {
-      "details": "https://github.com/colinta/SublimeSetSyntax/tags",
+      "tags": true,
       "sublime_text": ">=3000"
     }
   ]
