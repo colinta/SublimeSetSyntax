@@ -1,15 +1,15 @@
 {
   "name": "SetSyntax",
+  "details": "https://github.com/colinta/SublimeSetSyntax",
   "description": "Some generic keyboard bindings for 'Set Syntax:'",
   "author": "Colin T.A. Gray (colinta)",
-  "details": "https://github.com/colinta/SublimeSetSyntax",
   "labels": [
     "language syntax"
   ],
   "releases": [
     {
-      "tags": true,
-      "sublime_text": ">=3000"
+      "sublime_text": ">=3000",
+      "tags": true
     }
   ]
 }
