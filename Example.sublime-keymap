@@ -25,6 +25,5 @@
     { "keys": ["ctrl+alt+shift+w"], "command": "set_syntax", "args": {"matches": "w"} },
     { "keys": ["ctrl+alt+shift+x"], "command": "set_syntax", "args": {"matches": "x"} },
     { "keys": ["ctrl+alt+shift+y"], "command": "set_syntax", "args": {"matches": "y"} },
-    { "keys": ["ctrl+alt+shift+z"], "command": "set_syntax", "args": {"matches": "z"} },
-    { "keys": ["ctrl+alt+shift+space"], "command": "set_syntax" }
+    { "keys": ["ctrl+alt+shift+z"], "command": "set_syntax", "args": {"matches": "z"} }
 ]
